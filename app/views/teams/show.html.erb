@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @team.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    No details
+  </div>
+</div>
+<%= link_to 'Back', teams_path, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_team_path(@team), class: "btn btn-primary" %>
+<%= link_to 'Delete', @team, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<h2><%= @team.name %> Players</h2>
+<%= render partial: "players/players", locals: {players: @team.players, with_team_names: false} %>
+<%= link_to 'New Player', new_player_path, class: "btn btn-success" %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @player.name %></h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Number:</strong>
+      <%= @player.number %>
+    </p>
+
+    <p>
+      <strong>Team:</strong>
+      <%= @player.team.name %>
+    </p>
+  </div>
+</div>
+<%= link_to 'Back', @player.team, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_player_path(@player), class: "btn btn-primary" %>
+<%= link_to 'Delete', @player, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

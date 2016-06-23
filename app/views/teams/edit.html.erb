@@ -1,0 +1,6 @@
+<h1>Editing Team</h1>
+
+<%= render 'form', team: @team %>
+
+<%= link_to 'Back', @team, class: "btn btn-default" %>
+<%= link_to 'Delete', @team, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

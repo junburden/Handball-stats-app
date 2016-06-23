@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row header-row">
+      <div class="col-xs-2">
+        Team
+      </div>
+      <div class="col-xs-2">
+        Player
+      </div>
+      <div class="col-xs-1">
+        Goal
+      </div>
+      <div class="col-xs-1">
+        7m
+      </div>
+      <div class="col-xs-2">
+        x pos
+      </div>
+      <div class="col-xs-2">
+        y pos
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% shots.each do |shot| %>
+      <div class="row">
+        <div class="col-xs-2">
+          <%= shot.team.name %>
+        </div>
+        <div class="col-xs-2">
+          <%= shot.player.name %>
+        </div>
+        <div class="col-xs-1">
+          <% if shot.goal %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <% if shot.seven %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+          <% end %>
+        </div>
+        <div class="col-xs-2">
+          <%= shot.x_position %>
+        </div>
+        <div class="col-xs-2">
+          <%= shot.y_position %>
+        </div>
+        <div class="col-xs-2">
+          <%= link_to 'Edit', edit_shot_path(shot), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

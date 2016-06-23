@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+<h1>Shot Details</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Goal:</strong>
+      <%= @shot.goal %>
+    </p>
+
+    <p>
+      <strong>7 metre:</strong>
+      <%= @shot.seven %>
+    </p>
+
+    <p>
+      <strong>X position:</strong>
+      <%= @shot.x_position %>
+    </p>
+
+    <p>
+      <strong>Y position:</strong>
+      <%= @shot.y_position %>
+    </p>
+
+    <p>
+      <strong>Game:</strong>
+      <%= @shot.game.id %>
+    </p>
+
+    <p>
+      <strong>Team:</strong>
+      <%= @shot.team.name %>
+    </p>
+
+    <p>
+      <strong>Player:</strong>
+      <%= @shot.player.name %>
+    </p>
+  </div>
+</div>
+<%= link_to 'Back', shots_path, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_shot_path(@shot), class: "btn btn-primary" %>
+<%= link_to 'Delete', @shot, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shots</h1>
+
+<%= link_to 'New Shot', new_shot_path, class: "btn btn-success" %>
+
+<br><br>
+
+<%= render partial: "shots", locals: {shots: @shots} %>

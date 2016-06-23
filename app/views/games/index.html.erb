@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Games</h1>
+
+<%= link_to 'New Game', new_game_path, class: "btn btn-success" %>
+
+<br><br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row header-row">
+      <div class="col-xs-3">
+        Home
+      </div>
+      <div class="col-xs-3">
+        Away
+      </div>
+      <div class="col-xs-3">
+        Date
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% @games.each do |game| %>
+      <div class="row">
+        <div class="col-xs-3">
+          <%= game.home.name %>
+        </div>
+        <div class="col-xs-3">
+          <%= game.away.name %>
+        </div>
+        <div class="col-xs-3">
+          <%= game.date %>
+        </div>
+        <div class="col-xs-3">
+          <%= link_to 'Details', game, class: "btn btn-default" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

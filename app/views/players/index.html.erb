@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Players</h1>
+
+<%= link_to 'New Player', new_player_path, class: "btn btn-success" %>
+
+<br><br>
+
+<%= render partial: "players", locals: {players: @players, with_team_names: true} %>

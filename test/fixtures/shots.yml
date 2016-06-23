@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goal: false
+  x_position: 1.5
+  y_position: 1.5
+  game: one
+  team: one
+  player: one
+
+two:
+  goal: false
+  x_position: 1.5
+  y_position: 1.5
+  game: two
+  team: two
+  player: two

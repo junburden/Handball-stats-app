@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Game Details</h1>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+      <strong>Home:</strong>
+      <%= @game.home.name %>
+    </p>
+
+    <p>
+      <strong>Away:</strong>
+      <%= @game.away.name %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @game.date %>
+    </p>
+  </div>
+</div>
+<%= link_to 'Back', games_path, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_game_path(@game), class: "btn btn-primary" %>
+<%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<h2>Shots</h2>
+<%= render partial: "shots/shots", locals: {shots: @game.shots} %>
+<div class="panel-body">
+  <%= link_to 'New Shot', new_shot_path, class: "btn btn-success" %>
+</div>
