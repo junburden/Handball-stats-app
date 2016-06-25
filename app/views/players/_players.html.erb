@@ -16,22 +16,24 @@
   </div>
   <div class="panel-body">
     <% players.each do |player| %>
-      <div class="row">
-        <div class="col-xs-3">
-          <%= player.name %>
-        </div>
-        <div class="col-xs-3">
-          <%= player.number %>
-        </div>
-        <% if with_team_names %>
+      <%= link_to player do %>
+        <div class="row">
           <div class="col-xs-3">
-            <%= player.team.name %>
+            <%= player.name %>
           </div>
-        <% end %>
-        <div class="col-xs-3">
-          <%= link_to 'Details', player, class: "btn btn-default" %>
+          <div class="col-xs-3">
+            <%= player.number %>
+          </div>
+          <% if with_team_names %>
+            <div class="col-xs-3">
+              <%= player.team.name %>
+            </div>
+          <% end %>
+          <div class="col-xs-3">
+            <%= link_to 'Details', player, class: "btn btn-default" %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

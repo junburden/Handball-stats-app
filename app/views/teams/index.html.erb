@@ -16,14 +16,16 @@
   </div>
   <div class="panel-body">
     <% @teams.each do |team| %>
-      <div class="row">
-        <div class="col-xs-3">
-          <%= team.name %>
+      <%= link_to team do %>
+        <div class="row">
+          <div class="col-xs-3">
+            <%= team.name %>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to 'Details', team, class: "btn btn-default" %>
+          </div>
         </div>
-        <div class="col-xs-3">
-          <%= link_to 'Details', team, class: "btn btn-default" %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>

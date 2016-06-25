@@ -22,20 +22,22 @@
   </div>
   <div class="panel-body">
     <% @games.each do |game| %>
-      <div class="row">
-        <div class="col-xs-3">
-          <%= game.home.name %>
+      <%= link_to game do %>
+        <div class="row">
+          <div class="col-xs-3">
+            <%= game.home.name %>
+          </div>
+          <div class="col-xs-3">
+            <%= game.away.name %>
+          </div>
+          <div class="col-xs-3">
+            <%= game.date %>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to 'Details', game, class: "btn btn-default" %>
+          </div>
         </div>
-        <div class="col-xs-3">
-          <%= game.away.name %>
-        </div>
-        <div class="col-xs-3">
-          <%= game.date %>
-        </div>
-        <div class="col-xs-3">
-          <%= link_to 'Details', game, class: "btn btn-default" %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
