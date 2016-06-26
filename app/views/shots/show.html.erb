@@ -38,6 +38,6 @@
     </p>
   </div>
 </div>
-<%= link_to 'Back', shots_path, class: "btn btn-default" %>
+<%= link_to 'Back', @shot.game, class: "btn btn-default" %>
 <%= link_to 'Edit', edit_shot_path(@shot), class: "btn btn-primary" %>
 <%= link_to 'Delete', @shot, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

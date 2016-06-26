@@ -25,3 +25,18 @@ body { padding-top: 70px; }
 a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   color: #fff;
 }
+
+#canvas {
+  width: 760px;
+  height: 480px;
+  overflow: hidden;
+  cursor: pointer;
+  background-image: url("/assets/handball goal.png");
+}
+
+#handball {
+    position: relative;
+    left: 380px;
+    top: 240px;
+    transition: left .1s ease-in, top .1s ease-in;
+}
