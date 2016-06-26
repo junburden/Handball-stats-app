@@ -1,19 +1,21 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <div class="row">
-      <div class="col-md-4 col-sm-6">
-        <%= form_for(game) do |f| %>
-          <% if game.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+    <%= form_for(game) do |f| %>
+      <% if game.errors.any? %>
+        <div class="alert alert-warning" id="error_explanation">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <h4><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h4>
 
-              <ul>
-              <% game.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
+          <ul>
+          <% game.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
           <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
 
           <div class="field">
             <%= f.label :home_id %>

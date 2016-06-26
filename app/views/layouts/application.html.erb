@@ -33,6 +33,12 @@
       </div>
     </nav>
     <div class="container">
+      <% if notice %>
+        <div class="alert alert-success" id="notice">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%= notice %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

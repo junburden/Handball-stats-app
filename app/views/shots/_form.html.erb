@@ -1,20 +1,22 @@
 
 <div class="panel panel-default">
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-4 col-sm-6">
-        <%= form_for(shot) do |f| %>
-          <% if shot.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h2>
+  <div class="panel-body">    
+    <%= form_for(shot) do |f| %>
+      <% if shot.errors.any? %>
+        <div class="alert alert-warning" id="error_explanation">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <h4><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h4>
 
-              <ul>
-              <% shot.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
+          <ul>
+          <% shot.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
           <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
 
           <div class="field">
             <%= f.label :goal %>
