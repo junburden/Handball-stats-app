@@ -1,6 +1,6 @@
 <h1>Game Details</h1>
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-md-9">
     <div class="handball-goal">
       <% @game.shots.each do |shot| %>
         <% if shot.goal %>
@@ -11,7 +11,8 @@
       <% end %>
     </div>
   </div>
-  <div class="col-sm-3">
+  <br>
+  <div class="col-md-3 col-sm-6">
     <div class="panel panel-default">
       <div class="panel-body">
         <p>
@@ -35,6 +36,8 @@
     <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>
+
+<h2>Shots</h2>
 
 <%= render partial: "shots/shots", locals: {shots: @game.shots} %>
 
