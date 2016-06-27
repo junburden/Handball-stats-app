@@ -26,12 +26,15 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   color: #fff;
 }
 
-#canvas {
+.handball-goal {
   width: 760px;
   height: 480px;
   overflow: hidden;
-  cursor: pointer;
   background-image: url("/assets/handball goal.png");
+}
+
+#canvas {
+  cursor: pointer;
 }
 
 #handball {

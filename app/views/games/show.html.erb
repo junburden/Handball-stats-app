@@ -22,7 +22,16 @@
 <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <h2>Shots</h2>
-<%= render partial: "shots/shots", locals: {shots: @game.shots} %>
-<div class="panel-body">
-  <%= link_to 'New Shot', new_shot_path, class: "btn btn-success" %>
+<div class="handball-goal">
+  <% @game.shots.each do |shot| %>
+    <% if shot.goal %>
+      <%= link_to image_tag("/assets/handball.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
+    <% else %>
+      <%= link_to image_tag("/assets/handball-invert.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
+    <% end %>
+  <% end %>
 </div>
+
+<%= render partial: "shots/shots", locals: {shots: @game.shots} %>
+
+<%= link_to 'New Shot', new_shot_path, class: "btn btn-success" %>
