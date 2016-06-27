@@ -1,35 +1,39 @@
 <h1>Game Details</h1>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <p>
-      <strong>Home:</strong>
-      <%= @game.home.name %>
-    </p>
-
-    <p>
-      <strong>Away:</strong>
-      <%= @game.away.name %>
-    </p>
-
-    <p>
-      <strong>Date:</strong>
-      <%= @game.date %>
-    </p>
+<div class="row">
+  <div class="col-sm-9">
+    <div class="handball-goal">
+      <% @game.shots.each do |shot| %>
+        <% if shot.goal %>
+          <%= link_to image_tag("/assets/handball.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
+        <% else %>
+          <%= link_to image_tag("/assets/handball-invert.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-<%= link_to 'Back', games_path, class: "btn btn-default" %>
-<%= link_to 'Edit', edit_game_path(@game), class: "btn btn-primary" %>
-<%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>
+          <strong>Home:</strong>
+          <%= @game.home.name %>
+        </p>
 
-<h2>Shots</h2>
-<div class="handball-goal">
-  <% @game.shots.each do |shot| %>
-    <% if shot.goal %>
-      <%= link_to image_tag("/assets/handball.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
-    <% else %>
-      <%= link_to image_tag("/assets/handball-invert.png", style: "position: relative; margin-right: -42px; left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;"), edit_shot_path(shot) %>
-    <% end %>
-  <% end %>
+        <p>
+          <strong>Away:</strong>
+          <%= @game.away.name %>
+        </p>
+
+        <p>
+          <strong>Date:</strong>
+          <%= @game.date %>
+        </p>
+      </div>
+    </div>
+    <%= link_to 'Back', games_path, class: "btn btn-default" %>
+    <%= link_to 'Edit', edit_game_path(@game), class: "btn btn-primary" %>
+    <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
 </div>
 
 <%= render partial: "shots/shots", locals: {shots: @game.shots} %>

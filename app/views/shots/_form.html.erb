@@ -1,22 +1,83 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div class="handball-goal" id="canvas">
+      <%= image_tag "/assets/handball.png", id:"handball" %>
+    </div>
+    <script type="text/javascript">
 
-<div class="panel panel-default">
-  <div class="panel-body">    
-    <%= form_for(shot) do |f| %>
-      <% if shot.errors.any? %>
-        <div class="alert alert-warning" id="error_explanation">
-          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <h4><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h4>
+      $( document ).ready(function() {
+        var xVal = parseFloat($("input[name='shot[x_position]']").val(), 10);
+        var yVal = parseFloat($("input[name='shot[y_position]']").val(), 10);
+        var handball = document.querySelector("#handball");
 
-          <ul>
-          <% shot.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+        handball.style.left = (xVal * 2 + 380 - 19) + "px";
+        handball.style.top = (480 - yVal * 2 - 19) + "px";
+      });
+
+      $('#canvas').bind('click', function (e) {
+        var xInput = document.querySelector("#shot_x_position");
+        var yInput = document.querySelector("#shot_y_position");
+        var handball = document.querySelector("#handball");
+        var parentPosition = getPosition(e.currentTarget);
+        var xPosition = e.clientX - parentPosition.x;
+        var yPosition = e.clientY - parentPosition.y;
+
+        x = (xPosition - 380) / 2;
+        y = (480 - yPosition) / 2;
+
+        handball.style.left = (xPosition - 19) + "px";
+        handball.style.top = (yPosition - 19) + "px";
+
+        xInput.value = x;
+        yInput.value = y;
+
+      });
+
+      // Helper function to get an element's exact position
+      function getPosition(el) {
+        var xPos = 0;
+        var yPos = 0;
+       
+        while (el) {
+          if (el.tagName == "BODY") {
+            // deal with browser quirks with body/window/document and page scroll
+            var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+            var yScroll = el.scrollTop || document.documentElement.scrollTop;
+       
+            xPos += (el.offsetLeft - xScroll + el.clientLeft);
+            yPos += (el.offsetTop - yScroll + el.clientTop);
+          } else {
+            // for all other non-BODY elements
+            xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+            yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+          }
+       
+          el = el.offsetParent;
+        }
+        return {
+          x: xPos,
+          y: yPos
+        };
+      }
+
+    </script>
+  </div>
+  <div class="col-sm-3">
+    <div class="panel panel-default">
+      <div class="panel-body">    
+        <%= form_for(shot) do |f| %>
+          <% if shot.errors.any? %>
+            <div class="alert alert-warning" id="error_explanation">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <h4><%= pluralize(shot.errors.count, "error") %> prohibited this shot from being saved:</h4>
+
+              <ul>
+              <% shot.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="row">
-        <div class="col-md-4 col-sm-6">
 
           <div class="field">
             <%= f.label :goal %>
@@ -27,68 +88,6 @@
             <%= f.label "7 metre" %>
             <%= f.check_box :seven %>
           </div>
-
-          <div class="handball-goal" id="canvas">
-            <%= image_tag "/assets/handball.png", id:"handball" %>
-          </div>
-          <script type="text/javascript">
-
-            $( document ).ready(function() {
-              var xVal = parseFloat($("input[name='shot[x_position]']").val(), 10);
-              var yVal = parseFloat($("input[name='shot[y_position]']").val(), 10);
-              var handball = document.querySelector("#handball");
-
-              handball.style.left = (xVal * 2 + 380 - 19) + "px";
-              handball.style.top = (480 - yVal * 2 - 19) + "px";
-            });
-
-            $('#canvas').bind('click', function (e) {
-              var xInput = document.querySelector("#shot_x_position");
-              var yInput = document.querySelector("#shot_y_position");
-              var handball = document.querySelector("#handball");
-              var parentPosition = getPosition(e.currentTarget);
-              var xPosition = e.clientX - parentPosition.x;
-              var yPosition = e.clientY - parentPosition.y;
-
-              x = (xPosition - 380) / 2;
-              y = (480 - yPosition) / 2;
-
-              handball.style.left = (xPosition - 19) + "px";
-              handball.style.top = (yPosition - 19) + "px";
-
-              xInput.value = x;
-              yInput.value = y;
-
-            });
-
-            // Helper function to get an element's exact position
-            function getPosition(el) {
-              var xPos = 0;
-              var yPos = 0;
-             
-              while (el) {
-                if (el.tagName == "BODY") {
-                  // deal with browser quirks with body/window/document and page scroll
-                  var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-                  var yScroll = el.scrollTop || document.documentElement.scrollTop;
-             
-                  xPos += (el.offsetLeft - xScroll + el.clientLeft);
-                  yPos += (el.offsetTop - yScroll + el.clientTop);
-                } else {
-                  // for all other non-BODY elements
-                  xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-                  yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-                }
-             
-                el = el.offsetParent;
-              }
-              return {
-                x: xPos,
-                y: yPos
-              };
-            }
-
-          </script>
 
           <div class="field">
             <%= f.label :x_position %>
