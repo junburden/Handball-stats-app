@@ -38,4 +38,4 @@ gerard = Player.create({name: "Yvan Gerard", number: 88, team_id: puac.id})
 peillet = Player.create({name: "Roman Le Peillet", number: 12, team_id: puac.id})
 erevik = Player.create({name: "Öle Erevik", number: 16, team_id: puac.id})
 
-game = Game.create({home_id: psg.id, away_id: puac.id, date: "20/06/2016"})
+game = Game.create({home_id: psg.id, away_id: puac.id, date: "02/06/2016"})
