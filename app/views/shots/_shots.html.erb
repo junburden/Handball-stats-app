@@ -5,7 +5,10 @@
         Team
       </div>
       <div class="col-xs-2">
-        Player
+        Shooter
+      </div>
+      <div class="col-xs-2">
+        Goalie
       </div>
       <div class="col-xs-1">
         Goal
@@ -13,10 +16,10 @@
       <div class="col-xs-1">
         7m
       </div>
-      <div class="col-xs-2">
+      <div class="col-xs-1">
         x pos
       </div>
-      <div class="col-xs-2">
+      <div class="col-xs-1">
         y pos
       </div>
     </div>
@@ -29,7 +32,10 @@
             <%= shot.team.name %>
           </div>
           <div class="col-xs-2">
-            <%= shot.player.name %>
+            <%= shot.shooter.name %>
+          </div>
+          <div class="col-xs-2">
+            <%= shot.goalie.name %>
           </div>
           <div class="col-xs-1">
             <% if shot.goal %>
@@ -41,10 +47,10 @@
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             <% end %>
           </div>
-          <div class="col-xs-2">
+          <div class="col-xs-1">
             <%= shot.x_position %>
           </div>
-          <div class="col-xs-2">
+          <div class="col-xs-1">
             <%= shot.y_position %>
           </div>
           <div class="col-xs-2">

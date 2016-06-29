@@ -70,6 +70,6 @@ class ShotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shot_params
-      params.require(:shot).permit(:goal, :seven, :x_position, :y_position, :game_id, :team_id, :player_id)
+      params.require(:shot).permit(:goal, :seven, :x_position, :y_position, :game_id, :team_id, :shooter_id, :goalie_id)
     end
 end

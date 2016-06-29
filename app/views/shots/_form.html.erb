@@ -37,13 +37,13 @@
       function getPosition(el) {
         var xPos = 0;
         var yPos = 0;
-       
+
         while (el) {
           if (el.tagName == "BODY") {
             // deal with browser quirks with body/window/document and page scroll
             var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
             var yScroll = el.scrollTop || document.documentElement.scrollTop;
-       
+
             xPos += (el.offsetLeft - xScroll + el.clientLeft);
             yPos += (el.offsetTop - yScroll + el.clientTop);
           } else {
@@ -51,7 +51,7 @@
             xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
             yPos += (el.offsetTop - el.scrollTop + el.clientTop);
           }
-       
+
           el = el.offsetParent;
         }
         return {
@@ -65,7 +65,7 @@
   <br>
   <div class="col-md-3 col-sm-6">
     <div class="panel panel-default">
-      <div class="panel-body">    
+      <div class="panel-body">
         <%= form_for(shot) do |f| %>
           <% if shot.errors.any? %>
             <div class="alert alert-warning" id="error_explanation">
@@ -111,8 +111,13 @@
           </div>
 
           <div class="field">
-            <%= f.label :player_id %>
-            <%= f.collection_select :player_id, Player.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+            <%= f.label :shooter_id %>
+            <%= f.collection_select :shooter_id, Player.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+          </div>
+
+          <div class="field">
+            <%= f.label :goalie_id %>
+            <%= f.collection_select :goalie_id, Player.all, :id, :name, {prompt: true}, {class: "form-control"} %>
           </div>
 
           <div class="actions">
