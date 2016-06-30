@@ -1,6 +1,6 @@
 <h1>Editing Shot</h1>
 
-<%= render 'form', shot: @shot %>
+<%= render 'form', locals: {shot: @shot, games: @games, teams: @teams} %>
 
 <%= link_to 'Back', @shot.game, class: "btn btn-default" %>
 <%= link_to 'Delete', @shot, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

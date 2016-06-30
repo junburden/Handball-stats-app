@@ -91,23 +91,21 @@
           </div>
 
           <div class="field">
-            <%= f.label :x_position %>
-            <%= f.text_field :x_position, class: "form-control" %>
+            <%= f.text_field :x_position, type: "hidden", value: 0 %>
           </div>
 
           <div class="field">
-            <%= f.label :y_position %>
-            <%= f.text_field :y_position, class: "form-control" %>
+            <%= f.text_field :y_position, type: "hidden", value: 100 %>
           </div>
 
           <div class="field">
             <%= f.label :game_id %>
-            <%= f.collection_select :game_id, Game.all, :id, :details, {prompt: true}, {class: "form-control"} %>
+            <%= f.collection_select :game_id, games, :id, :details, {}, {class: "form-control"} %>
           </div>
 
           <div class="field">
             <%= f.label :team_id %>
-            <%= f.collection_select :team_id, Team.all, :id, :name, {prompt: true}, {class: "form-control"} %>
+            <%= f.collection_select :team_id, teams, :id, :name, {prompt: true}, {class: "form-control"} %>
           </div>
 
           <div class="field">

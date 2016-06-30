@@ -1,5 +1,7 @@
 class ShotsController < ApplicationController
   before_action :set_shot, only: [:show, :edit, :update, :destroy]
+  before_action :set_games, only: [:edit, :new]
+  before_action :set_teams, only: [:edit, :new]
 
   # GET /shots
   # GET /shots.json
@@ -66,6 +68,22 @@ class ShotsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_shot
       @shot = Shot.find(params[:id])
+    end
+
+    def set_games
+      if params[:game_id]
+        @games = Game.where(id: params[:game_id])
+      else
+        @games = Game.all
+      end
+    end
+
+    def set_teams
+      if params[:game_id]
+        @teams = Team.find(@games.first.home.id, @games.first.away.id)
+      else
+        @teams = Team.all
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

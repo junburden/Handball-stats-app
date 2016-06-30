@@ -31,14 +31,23 @@
         </p>
       </div>
     </div>
-    <%= link_to 'Back', games_path, class: "btn btn-default" %>
-    <%= link_to 'Edit', edit_game_path(@game), class: "btn btn-primary" %>
-    <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <div>
+      <%= link_to 'Back', games_path, class: "btn btn-default" %>
+      <%= link_to 'Edit', edit_game_path(@game), class: "btn btn-primary" %>
+      <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+
+    <br>
+    <br>
+
+    <div>
+      <%= link_to 'Add Shot', new_shot_path(game_id: @game.id), class: "btn btn-success" %>
+    </div>
+
   </div>
 </div>
 
 <h2>Shots</h2>
 
 <%= render partial: "shots/shots", locals: {shots: @game.shots} %>
-
-<%= link_to 'New Shot', new_shot_path, class: "btn btn-success" %>
