@@ -9,9 +9,24 @@
         var xVal = parseFloat($("input[name='shot[x_position]']").val(), 10);
         var yVal = parseFloat($("input[name='shot[y_position]']").val(), 10);
         var handball = document.querySelector("#handball");
+        var goal = $("input[name='shot[goal]']:checkbox").is(":checked");
+
+        if(!goal) {
+          handball.src="/assets/handball-invert.png";
+        };
 
         handball.style.left = (xVal * 2 + 380 - 19) + "px";
         handball.style.top = (480 - yVal * 2 - 19) + "px";
+      });
+
+      $("input[name='shot[goal]']:checkbox").bind('click', function (e) {
+        var handball = document.querySelector("#handball");
+        var goal = $("input[name='shot[goal]']:checkbox")
+        if(goal.is(":checked")){
+          handball.src="/assets/handball.png";
+        } else{
+          handball.src="/assets/handball-invert.png";
+        }
       });
 
       $('#canvas').bind('click', function (e) {
@@ -91,11 +106,11 @@
           </div>
 
           <div class="field">
-            <%= f.text_field :x_position, type: "hidden", value: 0 %>
+            <%= f.text_field :x_position, type: "hidden" %>
           </div>
 
           <div class="field">
-            <%= f.text_field :y_position, type: "hidden", value: 100 %>
+            <%= f.text_field :y_position, type: "hidden" %>
           </div>
 
           <div class="field">

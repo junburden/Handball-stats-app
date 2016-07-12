@@ -16,7 +16,7 @@ class ShotsController < ApplicationController
 
   # GET /shots/new
   def new
-    @shot = Shot.new
+    @shot = Shot.new(goal: true, x_position: 0, y_position: 100)
   end
 
   # GET /shots/1/edit
