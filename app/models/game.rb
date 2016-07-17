@@ -6,4 +6,12 @@ class Game < ApplicationRecord
   def details
     "#{date} #{home.name} vs #{away.name}"
   end
+
+  def home_team_score
+    Shot.where(team_id: home.id, game_id: id, goal: true).count
+  end
+
+  def away_team_score
+    Shot.where(team_id: away.id, game_id: id, goal: true).count
+  end
 end

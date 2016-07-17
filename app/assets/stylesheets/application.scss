@@ -27,6 +27,7 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
 }
 
 .handball-goal {
+  position: relative;
   width: 760px;
   height: 480px;
   overflow: hidden;
@@ -37,9 +38,19 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   cursor: pointer;
 }
 
+.handball {
+  position: absolute;
+  opacity: 0.3;
+}
+
 #handball {
-    position: relative;
+    position: absolute;
     left: 380px;
     top: 240px;
     transition: left .1s ease-in, top .1s ease-in;
+}
+
+.score {
+  text-align: center;
+  font-size: 2em;
 }

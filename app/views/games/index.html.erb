@@ -23,10 +23,10 @@
       <%= link_to game do %>
         <div class="row">
           <div class="col-xs-3">
-            <%= game.home.name %>
+            <%= game.home.name %>  <b><%= game.home_team_score %></b>
           </div>
           <div class="col-xs-3">
-            <%= game.away.name %>
+            <%= game.away.name %>  <b><%= game.away_team_score %></b>
           </div>
           <div class="col-xs-3">
             <%= game.date %>
