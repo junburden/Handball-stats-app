@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-9">
     <div class="handball-goal" id="canvas">
-      <%= image_tag "/assets/handball.png", id:"handball" %>
+      <%= image_tag asset_path("handball.png"), id:"handball" %>
     </div>
     <script type="text/javascript">
 
@@ -12,7 +12,7 @@
         var goal = $("input[name='shot[goal]']:checkbox").is(":checked");
 
         if(!goal) {
-          handball.src="/assets/handball-invert.png";
+          handball.src='<%= asset_path("handball-invert.png") %>';
         };
 
         handball.style.left = (xVal * 2 + 380 - 19) + "px";
@@ -23,9 +23,9 @@
         var handball = document.querySelector("#handball");
         var goal = $("input[name='shot[goal]']:checkbox")
         if(goal.is(":checked")){
-          handball.src="/assets/handball.png";
+          handball.src='<%= asset_path("handball.png") %>';
         } else{
-          handball.src="/assets/handball-invert.png";
+          handball.src='<%= asset_path("handball-invert.png") %>';
         }
       });
 
