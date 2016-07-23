@@ -14540,22 +14540,64 @@ return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationData,o=i.historyC
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
-(function() {
 
 
-}).call(this);
-(function() {
 
+function goalClickHandler(event) {
+  var handball = document.querySelector("#handball");
+  var goal = $("input[name='shot[goal]']:checkbox")
+  if(goal.is(":checked")){
+    handball.src='/assets/handball-77932c3ae3aa470c06327fa8ff994a4caa05378d4d7f8562d568f6a47ea97e98.png';
+  } else{
+    handball.src='/assets/handball-invert-87b5f0be20b3018f2ce3caf30fa07277646feb5edef99e95109fae75a5ae5fe6.png';
+  }
+}
 
-}).call(this);
-(function() {
+function canvasClickHandler(event) {
+  event = event || window.event
+  var xInput = document.querySelector("#shot_x_position");
+  var yInput = document.querySelector("#shot_y_position");
+  var handball = document.querySelector("#handball");
+  var parentPosition = getPosition(event.currentTarget);
+  var xPosition = event.clientX - parentPosition.x;
+  var yPosition = event.clientY - parentPosition.y;
 
+  x = (xPosition - 380) / 2;
+  y = (480 - yPosition) / 2;
 
-}).call(this);
-(function() {
+  handball.style.left = (xPosition - 19) + "px";
+  handball.style.top = (yPosition - 19) + "px";
 
+  xInput.value = x;
+  yInput.value = y;
+}
 
-}).call(this);
+function getPosition(el) {
+  var xPos = 0;
+  var yPos = 0;
+
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+}
+;
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

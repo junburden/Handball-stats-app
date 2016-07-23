@@ -1,0 +1,57 @@
+//= depend_on_asset "handball goal.png"
+//= depend_on_asset "handball-invert.png"
+
+function goalClickHandler(event) {
+  var handball = document.querySelector("#handball");
+  var goal = $("input[name='shot[goal]']:checkbox")
+  if(goal.is(":checked")){
+    handball.src='<%= asset_path("handball.png") %>';
+  } else{
+    handball.src='<%= asset_path("handball-invert.png") %>';
+  }
+}
+
+function canvasClickHandler(event) {
+  event = event || window.event
+  var xInput = document.querySelector("#shot_x_position");
+  var yInput = document.querySelector("#shot_y_position");
+  var handball = document.querySelector("#handball");
+  var parentPosition = getPosition(event.currentTarget);
+  var xPosition = event.clientX - parentPosition.x;
+  var yPosition = event.clientY - parentPosition.y;
+
+  x = (xPosition - 380) / 2;
+  y = (480 - yPosition) / 2;
+
+  handball.style.left = (xPosition - 19) + "px";
+  handball.style.top = (yPosition - 19) + "px";
+
+  xInput.value = x;
+  yInput.value = y;
+}
+
+function getPosition(el) {
+  var xPos = 0;
+  var yPos = 0;
+
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+}

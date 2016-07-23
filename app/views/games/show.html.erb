@@ -4,9 +4,9 @@
     <div class="handball-goal">
       <% @game.shots.each do |shot| %>
         <% if shot.goal %>
-          <%= link_to image_tag(asset_path("goal.png"), style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
+          <%= link_to image_tag("goal.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
         <% else %>
-          <%= link_to image_tag(asset_path("no goal.png"), style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
+          <%= link_to image_tag("no goal.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
         <% end %>
       <% end %>
     </div>

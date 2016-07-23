@@ -1,81 +1,12 @@
 <div class="row">
   <div class="col-md-9">
-    <div class="handball-goal" id="canvas">
-      <%= image_tag asset_path("handball.png"), id:"handball" %>
+    <div class="handball-goal" id="canvas" onclick="canvasClickHandler(event)">
+      <% if @shot.goal %>
+        <%= image_tag "handball.png", style: "left: #{(@shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - @shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
+      <% else %>
+        <%= image_tag "handball-invert.png", style: "left: #{(@shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - @shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
+      <% end %>
     </div>
-    <script type="text/javascript">
-
-      $( document ).ready(function() {
-        var xVal = parseFloat($("input[name='shot[x_position]']").val(), 10);
-        var yVal = parseFloat($("input[name='shot[y_position]']").val(), 10);
-        var handball = document.querySelector("#handball");
-        var goal = $("input[name='shot[goal]']:checkbox").is(":checked");
-
-        if(!goal) {
-          handball.src='<%= asset_path("handball-invert.png") %>';
-        };
-
-        handball.style.left = (xVal * 2 + 380 - 19) + "px";
-        handball.style.top = (480 - yVal * 2 - 19) + "px";
-      });
-
-      $("input[name='shot[goal]']:checkbox").bind('click', function (e) {
-        var handball = document.querySelector("#handball");
-        var goal = $("input[name='shot[goal]']:checkbox")
-        if(goal.is(":checked")){
-          handball.src='<%= asset_path("handball.png") %>';
-        } else{
-          handball.src='<%= asset_path("handball-invert.png") %>';
-        }
-      });
-
-      $('#canvas').bind('click', function (e) {
-        var xInput = document.querySelector("#shot_x_position");
-        var yInput = document.querySelector("#shot_y_position");
-        var handball = document.querySelector("#handball");
-        var parentPosition = getPosition(e.currentTarget);
-        var xPosition = e.clientX - parentPosition.x;
-        var yPosition = e.clientY - parentPosition.y;
-
-        x = (xPosition - 380) / 2;
-        y = (480 - yPosition) / 2;
-
-        handball.style.left = (xPosition - 19) + "px";
-        handball.style.top = (yPosition - 19) + "px";
-
-        xInput.value = x;
-        yInput.value = y;
-
-      });
-
-      // Helper function to get an element's exact position
-      function getPosition(el) {
-        var xPos = 0;
-        var yPos = 0;
-
-        while (el) {
-          if (el.tagName == "BODY") {
-            // deal with browser quirks with body/window/document and page scroll
-            var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-            var yScroll = el.scrollTop || document.documentElement.scrollTop;
-
-            xPos += (el.offsetLeft - xScroll + el.clientLeft);
-            yPos += (el.offsetTop - yScroll + el.clientTop);
-          } else {
-            // for all other non-BODY elements
-            xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-            yPos += (el.offsetTop - el.scrollTop + el.clientTop);
-          }
-
-          el = el.offsetParent;
-        }
-        return {
-          x: xPos,
-          y: yPos
-        };
-      }
-
-    </script>
   </div>
   <br>
   <div class="col-md-3 col-sm-6">
@@ -95,7 +26,7 @@
             </div>
           <% end %>
 
-          <div class="field">
+          <div class="field" onclick="goalClickHandler(event)">
             <%= f.label :goal %>
             <%= f.check_box :goal %>
           </div>
