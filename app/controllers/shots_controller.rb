@@ -1,7 +1,6 @@
 class ShotsController < ApplicationController
   before_action :set_shot, only: [:show, :edit, :update, :destroy]
-  before_action :set_games, only: [:edit, :new]
-  before_action :set_teams, only: [:edit, :new]
+  before_action :set_values, only: [:edit, :new]
 
   # GET /shots
   # GET /shots.json
@@ -33,6 +32,7 @@ class ShotsController < ApplicationController
         format.html { redirect_to @shot.game, notice: 'Shot was successfully created.' }
         format.json { render :show, status: :created, location: @shot }
       else
+        set_values
         format.html { render :new }
         format.json { render json: @shot.errors, status: :unprocessable_entity }
       end
@@ -47,6 +47,7 @@ class ShotsController < ApplicationController
         format.html { redirect_to @shot.game, notice: 'Shot was successfully updated.' }
         format.json { render :show, status: :ok, location: @shot }
       else
+        set_values
         format.html { render :edit }
         format.json { render json: @shot.errors, status: :unprocessable_entity }
       end
@@ -70,19 +71,45 @@ class ShotsController < ApplicationController
       @shot = Shot.find(params[:id])
     end
 
+    def set_values
+      set_games
+      set_teams
+      set_shooters
+      set_goalies
+    end
+
     def set_games
       if params[:game_id]
         @games = Game.where(id: params[:game_id])
+      elsif @shot && @shot.game_id
+        @games = Game.where(id: @shot.game_id)
       else
         @games = Game.all
       end
     end
 
     def set_teams
-      if params[:game_id]
+      if params[:game_id] || (@shot && @shot.game_id)
         @teams = Team.find(@games.first.home.id, @games.first.away.id)
       else
-        @teams = Team.all
+        @teams = []
+      end
+    end
+
+    def set_shooters
+      if @shot && @shot.team_id
+        @shooters = Player.where(team_id: @shot.team_id)
+      else
+        @shooters = []
+      end
+    end
+
+    def set_goalies
+      if @shot && @shot.team_id
+        team_id = @games.first.home.id + @games.first.away.id - @shot.team_id
+        @goalies = Player.where(team_id: team_id)
+      else
+        @goalies = []
       end
     end
 

@@ -7,6 +7,10 @@ class Game < ApplicationRecord
     "#{date} #{home.name} vs #{away.name}"
   end
 
+  def teams
+    [home, away]
+  end
+
   def home_team_score
     Shot.where(team_id: home.id, game_id: id, goal: true).count
   end

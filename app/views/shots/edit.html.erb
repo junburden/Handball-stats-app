@@ -2,7 +2,7 @@
 
 <% puts @shot %>
 
-<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams} %>
+<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams, shooters: @shooters, goalies: @goalies} %>
 
 <%= link_to 'Back', @shot.game, class: "btn btn-default" %>
 <%= link_to 'Delete', @shot, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

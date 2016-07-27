@@ -4,7 +4,11 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    if params.has_key?(:team_id)
+      @players = Player.where(team_id: params[:team_id])
+    else
+      @players = Player.all
+    end
   end
 
   # GET /players/1

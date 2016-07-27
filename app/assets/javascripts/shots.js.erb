@@ -55,3 +55,47 @@ function getPosition(el) {
     y: yPos
   };
 }
+
+function getTeamsForGame(game_id, el_id) {
+  $.get('<%= Rails.application.routes.url_helpers.teams_path %>.json', {game_id: game_id})
+  .done(function(data) {
+    $(el_id).empty();
+    $(el_id).append($("<option>", {
+      text: "Please select"
+    }));
+    $.each(data, function(i, team) {
+      $(el_id).append($("<option>", {
+        value: team.id,
+        text: team.name
+      }));
+    });
+  });
+}
+
+function gameChangeHandler(el) {
+  var gameId = el[el.selectedIndex].value;
+  getTeamsForGame(gameId, "#shot_team_id");
+}
+
+function getPlayersForTeam(team_id, el_id) {
+  $.get('<%= Rails.application.routes.url_helpers.players_path %>.json', {team_id: team_id})
+  .done(function(data) {
+    $(el_id).empty();
+    $(el_id).append($("<option>", {
+      text: "Please select"
+    }));
+    $.each(data, function(i, player) {
+      $(el_id).append($("<option>", {
+        value: player.id,
+        text: player.name
+      }));
+    });
+  });
+}
+
+function teamChangeHandler(el) {
+  var shooterTeamId = parseInt(el[el.selectedIndex].value);
+  var goalieTeamId = parseInt(el[el.length-1].value) + parseInt(el[el.length-2].value) - shooterTeamId;
+  getPlayersForTeam(shooterTeamId, "#shot_shooter_id");
+  getPlayersForTeam(goalieTeamId, "#shot_goalie_id");
+}
