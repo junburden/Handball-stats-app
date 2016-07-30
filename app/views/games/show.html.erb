@@ -1,14 +1,42 @@
 <h1><%= @game.details %></h1>
 <div class="row">
   <div class="col-md-9">
-    <div class="handball-goal">
-      <% @game.shots.each do |shot| %>
-        <% if shot.goal %>
-          <%= link_to image_tag("goal.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
-        <% else %>
-          <%= link_to image_tag("no goal.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"), edit_shot_path(shot) %>
-        <% end %>
-      <% end %>
+    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#shots" id="shots-tab" role="tab" data-toggle="tab">Shots</a>
+      </li>
+      <li role="presentation">
+        <a href="#shot-details" id="shot-details-tab" role="tab" data-toggle="tab">Shot details</a>
+      </li>
+      <li role="presentation">
+        <a href="#heatmap" id="heatmap-tab" role="tab" data-toggle="tab">Heat map</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade active in" role="tab-pane" id="shots">
+        <div class="handball-goal">
+          <% @game.shots.each do |shot| %>
+            <%= link_to image_tag(
+              shot.goal ? "goal.png" : "no goal.png",
+              style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", class: "handball"),
+              edit_shot_path(shot)
+            %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane fade" role="tab-pane" id="shot-details">
+        <%= render partial: "shots/shots", locals: {shots: @game.shots} %>
+      </div>
+      <div class="tab-pane fade" role="tab-pane" id="heatmap">
+        <canvas class="handball-goal" id="canvas" width="760" height="480"></canvas>
+        <script>var data = [
+            <% @game.shots.each do |shot| %>
+              [<%= (shot.x_position * 2 + 380).round %>,<%= (480 - shot.y_position * 2).round %>, 1],
+            <% end %>
+          ]
+        </script>
+        <script>simpleheat('canvas').data(data).max(4).radius(19,19).draw();</script>
+      </div>
     </div>
   </div>
   <br>
