@@ -1,24 +1,5 @@
-# README
+# Handball Shooting Stats App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple app which lets users add, edit and analyse shots. The app uses simpleheat to draw [heatmaps](https://github.com/mourner/simpleheat) with canvas.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Check out the [demo](https://handball-stats.herokuapp.com)
