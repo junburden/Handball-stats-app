@@ -1,8 +1,4 @@
-<h1>Editing Shot</h1>
-
-<% puts @shot %>
-
-<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams, shooters: @shooters, goalies: @goalies} %>
+<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams, shooters: @shooters, goalies: @goalies, title: "Editing Shot"} %>
 
 <%= link_to 'Back', @shot.game, class: "btn btn-default" %>
 <%= link_to 'Delete', @shot, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

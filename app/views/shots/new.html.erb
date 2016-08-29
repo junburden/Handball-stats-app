@@ -1,5 +1,3 @@
-<h1>New Shot</h1>
-
-<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams, shooters: @shooters, goalies: @goalies} %>
+<%= render partial: 'form', locals: {shot: @shot, games: @games, teams: @teams, shooters: @shooters, goalies: @goalies, title: "New Shot"} %>
 
 <%= link_to 'Back', shots_path, class: "btn btn-default" %>

@@ -12,41 +12,44 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
+    <h1><%= title %></h1>
     <div class="handball-goal" id="canvas" onclick="canvasClickHandler(event)">
-      <% if @shot.goal %>
-        <%= image_tag "handball.png", style: "left: #{(@shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - @shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
+      <% if shot.goal %>
+        <%= image_tag "handball.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
       <% else %>
-        <%= image_tag "handball-invert.png", style: "left: #{(@shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - @shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
+        <%= image_tag "handball-invert.png", style: "left: #{(shot.x_position * 2 + 380 - 19).round.to_s}px; top: #{(480 - shot.y_position * 2 - 19).round.to_s}px;", id: "handball" %>
       <% end %>
     </div>
   </div>
   <br>
-  <div class="col-md-3 col-sm-6">
+  <div class="col-md-4 col-sm-6">
     <div class="panel panel-default">
       <div class="panel-body">
         <%= form_for(shot) do |f| %>
-          <div class="field" onclick="goalClickHandler(event)">
-            <%= f.label :goal %>
-            <%= f.check_box :goal %>
+          <div class="row">
+            <div class="col-xs-6">
+              <div class="field" onclick="goalClickHandler(event)">
+                <%= f.label :goal %>
+                <%= f.check_box :goal %>
+              </div>
+            </div>
+
+            <div class="col-xs-6">
+              <div class="field">
+                <%= f.label "7 metre" %>
+                <%= f.check_box :seven %>
+              </div>
+            </div>
           </div>
 
           <div class="field">
-            <%= f.label "7 metre" %>
-            <%= f.check_box :seven %>
-          </div>
-
-          <div class="field">
-            <%= f.text_field :x_position, type: "hidden" %>
-          </div>
-
-          <div class="field">
-            <%= f.text_field :y_position, type: "hidden" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :game_id %>
-            <%= f.collection_select :game_id, games, :id, :details, {prompt: games.length>1?true:false}, {class: "form-control", onchange: "gameChangeHandler(this)"} %>
+            <% if games.length > 1 %>
+              <%= f.label :game_id %>
+              <%= f.collection_select :game_id, games, :id, :details, {prompt: true}, {class: "form-control", onchange: "gameChangeHandler(this)"} %>
+            <% else %>
+              <%= f.hidden_field :game_id, value: games.first.id %>
+            <% end %>
           </div>
 
           <div class="field">
@@ -62,6 +65,14 @@
           <div class="field">
             <%= f.label :goalie_id %>
             <%= f.collection_select :goalie_id, goalies, :id, :name, {prompt: true}, {class: "form-control"} %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :x_position, type: "hidden" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :y_position, type: "hidden" %>
           </div>
 
           <div class="actions">
