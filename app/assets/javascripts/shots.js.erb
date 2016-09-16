@@ -56,34 +56,37 @@ function getPosition(el) {
   };
 }
 
-function getTeamsForGame(game_id, el_id) {
+function teamDiv(value, name) {
+  return $("<div class='col-xs-6'><label data-value='" + value + "' for='shot_team_id_" + value + "'><input onClick='teamChangeHandler(this)' type='radio' value='" + value + "' name='shot[team_id]' id='shot_team_id_" + value + "'> " + name + "</label></div>")
+}
+
+function getTeamsForGame(game_id) {
   $.get('<%= Rails.application.routes.url_helpers.teams_path %>.json', {game_id: game_id})
   .done(function(data) {
-    $(el_id).empty();
-    $(el_id).append($("<option>", {
-      text: "Please select"
-    }));
+    var teams = $('[for="shot_team_id"]').siblings()
+    teams.children().not(':first').remove();
     $.each(data, function(i, team) {
-      $(el_id).append($("<option>", {
-        value: team.id,
-        text: team.name
-      }));
+      teams.append(teamDiv(team.id, team.name));
     });
   });
 }
 
 function gameChangeHandler(el) {
   var gameId = el[el.selectedIndex].value;
-  getTeamsForGame(gameId, "#shot_team_id");
+  getTeamsForGame(gameId);
 }
 
-function getPlayersForTeam(team_id, el_id) {
+function getPlayersForTeam(team_id, el_id, goalies) {
   $.get('<%= Rails.application.routes.url_helpers.players_path %>.json', {team_id: team_id})
   .done(function(data) {
     $(el_id).empty();
-    $(el_id).append($("<option>", {
-      text: "Please select"
-    }));
+    if(!goalies){
+      $(el_id).append($("<option>", {
+        text: "Please select"
+      }));
+    } else {
+      data.reverse();
+    };
     $.each(data, function(i, player) {
       $(el_id).append($("<option>", {
         value: player.id,
@@ -94,8 +97,9 @@ function getPlayersForTeam(team_id, el_id) {
 }
 
 function teamChangeHandler(el) {
-  var shooterTeamId = parseInt(el[el.selectedIndex].value);
-  var goalieTeamId = parseInt(el[el.length-1].value) + parseInt(el[el.length-2].value) - shooterTeamId;
-  getPlayersForTeam(shooterTeamId, "#shot_shooter_id");
-  getPlayersForTeam(goalieTeamId, "#shot_goalie_id");
+  var teams = $('input[name="' + el.name + '"]')
+  var shooterTeamId = parseInt(el.value);
+  var goalieTeamId = parseInt(teams[1].value) + parseInt(teams[2].value) - shooterTeamId;
+  getPlayersForTeam(shooterTeamId, "#shot_shooter_id", false);
+  getPlayersForTeam(goalieTeamId, "#shot_goalie_id", true);
 }

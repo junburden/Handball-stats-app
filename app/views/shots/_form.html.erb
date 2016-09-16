@@ -54,7 +54,11 @@
 
           <div class="field">
             <%= f.label :team_id %>
-            <%= f.collection_select :team_id, teams, :id, :name, {prompt: true}, {class: "form-control", onchange: "teamChangeHandler(this)"} %>
+            <div class="row">
+              <%= f.collection_radio_buttons(:team_id, teams, :id, :name, {prompt: true}) do |b| %>
+                <div class="col-xs-6"><%= b.label(:"data-value" => b.value) { b.radio_button(onClick: "teamChangeHandler(this)") + ' ' + b.text } %></div>
+              <% end %>
+            </div>
           </div>
 
           <div class="field">
