@@ -57,7 +57,7 @@ function getPosition(el) {
 }
 
 function teamDiv(value, name) {
-  return $("<div class='col-xs-6'><label data-value='" + value + "' for='shot_team_id_" + value + "'><input onClick='teamChangeHandler(this)' type='radio' value='" + value + "' name='shot[team_id]' id='shot_team_id_" + value + "'> " + name + "</label></div>")
+  return $("<div class='col-sm-6'><label data-value='" + value + "' for='shot_team_id_" + value + "'><input onClick='teamChangeHandler(this)' type='radio' value='" + value + "' name='shot[team_id]' id='shot_team_id_" + value + "'> " + name + "</label></div>")
 }
 
 function getTeamsForGame(game_id) {
@@ -76,19 +76,29 @@ function gameChangeHandler(el) {
   getTeamsForGame(gameId);
 }
 
-function getPlayersForTeam(team_id, el_id, goalies) {
+function shooterDiv(value, name, number) {
+  return $("<div class='col-sm-6'><label data-value='" + value + "' for='shot_shooter_id_" + value + "'><input type='radio' value='" + value + "' name='shot[shooter_id]' id='shot_shooter_id_" + value + "'> " + number + " " + name + "</label></div>")
+}
+
+function getPlayersForShooters(team_id) {
   $.get('<%= Rails.application.routes.url_helpers.players_path %>.json', {team_id: team_id})
   .done(function(data) {
-    $(el_id).empty();
-    if(!goalies){
-      $(el_id).append($("<option>", {
-        text: "Please select"
-      }));
-    } else {
-      data.reverse();
-    };
+    var players = $('[for="shot_shooter_id"]').siblings()
+    players.children().not(':first').remove();
     $.each(data, function(i, player) {
-      $(el_id).append($("<option>", {
+      players.append(shooterDiv(player.id, player.name, player.number));
+    });
+  });
+}
+
+function getPlayersForGoalies(team_id) {
+  $.get('<%= Rails.application.routes.url_helpers.players_path %>.json', {team_id: team_id})
+  .done(function(data) {
+    var players = $("#shot_goalie_id")
+    players.empty();
+    data.reverse();
+    $.each(data, function(i, player) {
+      players.append($("<option>", {
         value: player.id,
         text: player.name
       }));
@@ -100,6 +110,6 @@ function teamChangeHandler(el) {
   var teams = $('input[name="' + el.name + '"]')
   var shooterTeamId = parseInt(el.value);
   var goalieTeamId = parseInt(teams[1].value) + parseInt(teams[2].value) - shooterTeamId;
-  getPlayersForTeam(shooterTeamId, "#shot_shooter_id", false);
-  getPlayersForTeam(goalieTeamId, "#shot_goalie_id", true);
+  getPlayersForShooters(shooterTeamId);
+  getPlayersForGoalies(goalieTeamId);
 }

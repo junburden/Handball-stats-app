@@ -56,14 +56,18 @@
             <%= f.label :team_id %>
             <div class="row">
               <%= f.collection_radio_buttons(:team_id, teams, :id, :name, {prompt: true}) do |b| %>
-                <div class="col-xs-6"><%= b.label(:"data-value" => b.value) { b.radio_button(onClick: "teamChangeHandler(this)") + ' ' + b.text } %></div>
+                <div class="col-sm-6"><%= b.label(:"data-value" => b.value) { b.radio_button(onClick: "teamChangeHandler(this)") + ' ' + b.text } %></div>
               <% end %>
             </div>
           </div>
 
           <div class="field">
             <%= f.label :shooter_id %>
-            <%= f.collection_select :shooter_id, shooters, :id, :name, {prompt: true}, {class: "form-control"} %>
+            <div class="row">
+              <%= f.collection_radio_buttons(:shooter_id, shooters, :id, :number_and_name, {prompt: true}) do |b| %>
+                <div class="col-sm-6"><%= b.label(:"data-value" => b.value) { b.radio_button() + ' ' + b.text } %></div>
+              <% end %>
+            </div>
           </div>
 
           <div class="field">
