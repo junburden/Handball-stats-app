@@ -14628,7 +14628,7 @@ function getPlayersForShooters(team_id) {
     var players = $('[for="shot_shooter_id"]').siblings()
     players.children().not(':first').remove();
     $.each(data, function(i, player) {
-      players.append(shooterDiv(player.id, player.name, player.number));
+      players.append(shooterDiv(player.id, player.last_name, player.number));
     });
   });
 }
@@ -14642,7 +14642,7 @@ function getPlayersForGoalies(team_id) {
     $.each(data, function(i, player) {
       players.append($("<option>", {
         value: player.id,
-        text: player.name
+        text: player.last_name
       }));
     });
   });
