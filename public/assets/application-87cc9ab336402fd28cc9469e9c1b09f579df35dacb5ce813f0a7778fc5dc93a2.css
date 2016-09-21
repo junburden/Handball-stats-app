@@ -8891,10 +8891,10 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
 /* line 31, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
 .handball-goal {
   position: relative;
-  width: 760px;
-  height: 480px;
+  width: 516px;
+  height: 359px;
   overflow: hidden;
-  background-image: url("/assets/handball goal-7a33b1e564cfa7f2d22e7c1aab4929e389b5b277e53fb3f795265d9fec3aada3.png ");
+  background-image: url("/assets/handball goal-793e45f51d34ab2f8ff483868cde50faf81f9312ffbd7660959f856fad1bf75d.png ");
 }
 
 /* line 39, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */

@@ -14547,9 +14547,9 @@ function goalClickHandler(event) {
   var handball = document.querySelector("#handball");
   var goal = $("input[name='shot[goal]']:checkbox")
   if(goal.is(":checked")){
-    handball.src='/assets/handball-77932c3ae3aa470c06327fa8ff994a4caa05378d4d7f8562d568f6a47ea97e98.png';
+    handball.src='/assets/handball-29a21ebd4ea4a5574642245ceb49f5174516c42fca92af9ca6ecd1edb2fd1a11.png';
   } else{
-    handball.src='/assets/handball-invert-87b5f0be20b3018f2ce3caf30fa07277646feb5edef99e95109fae75a5ae5fe6.png';
+    handball.src='/assets/handball-invert-14c508959985601e0bae5566d1e1779fccde81f902abe7f55372853713f6c0e2.png';
   }
 }
 
@@ -14562,11 +14562,11 @@ function canvasClickHandler(event) {
   var xPosition = event.clientX - parentPosition.x;
   var yPosition = event.clientY - parentPosition.y;
 
-  x = (xPosition - 380) / 2;
-  y = (480 - yPosition) / 2;
+  x = xPosition - 258;
+  y = 309 - yPosition;
 
-  handball.style.left = (xPosition - 19) + "px";
-  handball.style.top = (yPosition - 19) + "px";
+  handball.style.left = (xPosition - 9) + "px";
+  handball.style.top = (yPosition - 9) + "px";
 
   xInput.value = x;
   yInput.value = y;
