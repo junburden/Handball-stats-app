@@ -15,7 +15,7 @@ class ShotsController < ApplicationController
 
   # GET /shots/new
   def new
-    @shot = Shot.new(goal: true, x_position: 0, y_position: 100)
+    @shot = Shot.new(goal: true, x_position: 0, y_position: 100, shooter_x_pos: 0, shooter_z_pos: 720)
   end
 
   # GET /shots/1/edit
@@ -115,6 +115,6 @@ class ShotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shot_params
-      params.require(:shot).permit(:goal, :seven, :x_position, :y_position, :game_id, :team_id, :shooter_id, :goalie_id)
+      params.require(:shot).permit(:goal, :seven, :x_position, :y_position, :shooter_x_pos, :shooter_z_pos, :game_id, :team_id, :shooter_id, :goalie_id)
     end
 end

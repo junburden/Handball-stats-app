@@ -11,7 +11,7 @@ function goalClickHandler(event) {
   }
 }
 
-function canvasClickHandler(event) {
+function canvasGoalClickHandler(event) {
   event = event || window.event
   var xInput = document.querySelector("#shot_x_position");
   var yInput = document.querySelector("#shot_y_position");
@@ -28,6 +28,25 @@ function canvasClickHandler(event) {
 
   xInput.value = x;
   yInput.value = y;
+}
+
+function canvasFieldClickHandler(event) {
+  event = event || window.event
+  var xInput = document.querySelector("#shot_shooter_x_pos");
+  var zInput = document.querySelector("#shot_shooter_z_pos");
+  var shooter = document.querySelector("#shooter");
+  var parentPosition = getPosition(event.currentTarget);
+  var xPosition = event.clientX - parentPosition.x;
+  var zPosition = event.clientY - parentPosition.y;
+
+  x = (xPosition - 250) * 5;
+  z = (zPosition - 50) * 5;
+
+  shooter.style.left = (xPosition - 5) + "px";
+  shooter.style.top = (zPosition - 5) + "px";
+
+  xInput.value = x;
+  zInput.value = z;
 }
 
 function getPosition(el) {

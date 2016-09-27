@@ -36,7 +36,15 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   background-image: url('<%= asset_path("handball goal.png") %> ');
 }
 
-#canvas {
+.handball-field {
+  position: relative;
+  width: 500px;
+  height: 450px;
+  overflow: hidden;
+  background-image: url('<%= asset_path("handball field.png") %> ');
+}
+
+.canvas {
   cursor: pointer;
 }
 
@@ -45,7 +53,19 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   opacity: 0.3;
 }
 
+.shooter {
+  position: absolute;
+  opacity: 0.3;
+}
+
 #handball {
+  position: absolute;
+  left: 380px;
+  top: 240px;
+  transition: left .1s ease-in, top .1s ease-in;
+}
+
+#shooter {
   position: absolute;
   left: 380px;
   top: 240px;

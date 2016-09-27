@@ -8898,17 +8898,32 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
 }
 
 /* line 39, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
-#canvas {
+.handball-field {
+  position: relative;
+  width: 500px;
+  height: 450px;
+  overflow: hidden;
+  background-image: url("/assets/handball field-72eed6571f3e3e20a59fe56fd767e161f79279a0eb5af0ab862a73820bfb4a84.png ");
+}
+
+/* line 47, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+.canvas {
   cursor: pointer;
 }
 
-/* line 43, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+/* line 51, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
 .handball {
   position: absolute;
   opacity: 0.3;
 }
 
-/* line 48, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+/* line 56, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+.shooter {
+  position: absolute;
+  opacity: 0.3;
+}
+
+/* line 61, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
 #handball {
   position: absolute;
   left: 380px;
@@ -8916,7 +8931,15 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
   transition: left .1s ease-in, top .1s ease-in;
 }
 
-/* line 55, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+/* line 68, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
+#shooter {
+  position: absolute;
+  left: 380px;
+  top: 240px;
+  transition: left .1s ease-in, top .1s ease-in;
+}
+
+/* line 75, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
 .score {
   text-align: center;
   font-size: 2em;

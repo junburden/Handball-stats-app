@@ -17,10 +17,10 @@
         7m
       </div>
       <div class="col-xs-1">
-        x pos
+        Shot pos
       </div>
       <div class="col-xs-1">
-        y pos
+        Shooter pos
       </div>
     </div>
   </div>
@@ -48,10 +48,10 @@
             <% end %>
           </div>
           <div class="col-xs-1">
-            <%= shot.x_position %>
+            <%= shot.x_position %>, <%= shot.y_position %>
           </div>
           <div class="col-xs-1">
-            <%= shot.y_position %>
+            <%= shot.shooter_x_pos %>, <%= shot.shooter_z_pos %>
           </div>
           <div class="col-xs-2">
             <%= link_to 'Edit', edit_shot_path(shot), class: "btn btn-primary" %>
