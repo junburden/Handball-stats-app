@@ -18,7 +18,7 @@
           <% @game.shots.each do |shot| %>
             <%= link_to image_tag(
               shot.goal ? "goal.png" : "no goal.png",
-              style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(309 - shot.y_position - 9).round.to_s}px;", class: "handball"),
+              style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(259 - shot.y_position - 9).round.to_s}px;", class: "handball"),
               edit_shot_path(shot)
             %>
           <% end %>
@@ -27,7 +27,7 @@
           <% @game.shots.each do |shot| %>
             <%= link_to image_tag(
               "shooter.png",
-              style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 50 - 5).round.to_s}px;", class: "shooter"),
+              style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 20 - 5).round.to_s}px;", class: "shooter"),
               edit_shot_path(shot)
             %>
           <% end %>
@@ -37,18 +37,18 @@
         <%= render partial: "shots/shots", locals: {shots: @game.shots} %>
       </div>
       <div class="tab-pane fade" role="tab-pane" id="heatmap">
-        <canvas class="handball-goal" id="goal_canvas" width="516px" height="359px"></canvas>
+        <canvas class="handball-goal" id="goal_canvas" width="516px" height="279px"></canvas>
         <script>var shot_data = [
             <% @game.shots.each do |shot| %>
-              [<%= (shot.x_position + 258).round %>,<%= (309 - shot.y_position).round %>, 1],
+              [<%= (shot.x_position + 258).round %>,<%= (259 - shot.y_position).round %>, 1],
             <% end %>
           ]
         </script>
         <script>simpleheat('goal_canvas').data(shot_data).max(4).radius(9,9).draw();</script>
-        <canvas class="handball-field" id="field_canvas" width="500px" height="450px"></canvas>
+        <canvas class="handball-field" id="field_canvas" width="500px" height="420px"></canvas>
         <script>var shooter_data = [
             <% @game.shots.each do |shot| %>
-              [<%= (shot.shooter_x_pos/5 + 250).round %>,<%= (shot.shooter_z_pos/5 + 50).round %>, 1],
+              [<%= (shot.shooter_x_pos/5 + 250).round %>,<%= (shot.shooter_z_pos/5 + 20).round %>, 1],
             <% end %>
           ]
         </script>

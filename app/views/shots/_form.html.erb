@@ -92,13 +92,13 @@
   <div class="col-md-8">
     <div class="handball-goal canvas" onclick="canvasGoalClickHandler(event)">
       <% if shot.goal %>
-        <%= image_tag "handball.png", style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(309 - shot.y_position - 9).round.to_s}px;", id: "handball" %>
+        <%= image_tag "handball.png", style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(259 - shot.y_position - 9).round.to_s}px;", id: "handball" %>
       <% else %>
-        <%= image_tag "handball-invert.png", style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(309 - shot.y_position - 9).round.to_s}px;", id: "handball" %>
+        <%= image_tag "handball-invert.png", style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(259 - shot.y_position - 9).round.to_s}px;", id: "handball" %>
       <% end %>
     </div>
     <div class="handball-field canvas" onclick="canvasFieldClickHandler(event)">
-      <%= image_tag "shooter.png", style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 50 - 5).round.to_s}px;", id: "shooter" %>
+      <%= image_tag "shooter.png", style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 20 - 5).round.to_s}px;", id: "shooter" %>
     </div>
   </div>
 </div>

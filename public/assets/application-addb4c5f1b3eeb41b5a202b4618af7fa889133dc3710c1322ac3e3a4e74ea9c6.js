@@ -14563,7 +14563,7 @@ function canvasGoalClickHandler(event) {
   var yPosition = event.clientY - parentPosition.y;
 
   x = xPosition - 258;
-  y = 309 - yPosition;
+  y = 259 - yPosition;
 
   handball.style.left = (xPosition - 9) + "px";
   handball.style.top = (yPosition - 9) + "px";
@@ -14582,7 +14582,7 @@ function canvasFieldClickHandler(event) {
   var zPosition = event.clientY - parentPosition.y;
 
   x = (xPosition - 250) * 5;
-  z = (zPosition - 50) * 5;
+  z = (zPosition - 20) * 5;
 
   shooter.style.left = (xPosition - 5) + "px";
   shooter.style.top = (zPosition - 5) + "px";

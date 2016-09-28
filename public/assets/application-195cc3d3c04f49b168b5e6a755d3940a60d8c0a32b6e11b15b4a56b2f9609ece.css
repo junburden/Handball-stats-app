@@ -8892,18 +8892,18 @@ a:visited.btn-success, a:visited.btn-primary, a:visited.btn-danger {
 .handball-goal {
   position: relative;
   width: 516px;
-  height: 359px;
+  height: 279px;
   overflow: hidden;
-  background-image: url("/assets/handball goal-793e45f51d34ab2f8ff483868cde50faf81f9312ffbd7660959f856fad1bf75d.png ");
+  background-image: url("/assets/handball goal-f1e13bf123b780752d24443969e6ae95b4ca6294942055dd58ba953fb4fd7762.png ");
 }
 
 /* line 39, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
 .handball-field {
   position: relative;
   width: 500px;
-  height: 450px;
+  height: 420px;
   overflow: hidden;
-  background-image: url("/assets/handball field-72eed6571f3e3e20a59fe56fd767e161f79279a0eb5af0ab862a73820bfb4a84.png ");
+  background-image: url("/assets/handball field-2628d53c9c06d501d0bfaf2ab45983dfdd2a7d3ecddbab60576a68d11d8d860f.png ");
 }
 
 /* line 47, /Users/junburden/Projects/Handball-stats-app/app/assets/stylesheets/application.scss.erb */
