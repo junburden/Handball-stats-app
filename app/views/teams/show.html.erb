@@ -9,5 +9,5 @@
 <%= link_to 'Delete', @team, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
 
 <h2><%= @team.name %> Players</h2>
-<%= render partial: "players/players", locals: {players: @team.players, with_team_names: false} %>
+<%= render partial: "players/players", locals: {players: @players, with_team_names: false} %>
 <%= link_to 'New Player', new_player_path, class: "btn btn-success" %>

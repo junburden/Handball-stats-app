@@ -35,6 +35,19 @@
           </div>
 
           <div class="field">
+            <%= f.label :position %>
+            <%= f.select(:position, options_for_select([
+              ['Goalie', 'Goalie'],
+              ['Left Wing', 'Left Wing'],
+              ['Left Back', 'Left Back'],
+              ['Centre', 'Centre'],
+              ['Pivot', 'Pivot'],
+              ['Right Back', 'Right Back'],
+              ['Right Wing', 'Right Wing']
+            ]), {}, {class: "form-control"}) %>
+          </div>
+
+          <div class="field">
             <%= f.label :team_id %>
             <%= f.collection_select :team_id, Team.all, :id, :name, {include_blank: "None"}, class: "form-control" %>
           </div>
