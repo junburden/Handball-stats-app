@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
-  belongs_to :team
+  has_many :memberships
+  has_many :teams, through: :memberships
   has_many :shots
 
   def number_and_name

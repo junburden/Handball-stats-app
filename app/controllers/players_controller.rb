@@ -5,9 +5,9 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     if params.has_key?(:team_id)
-      @players = Player.where(team_id: params[:team_id]).order("CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position")
+      @players = Team.find(params[:team_id]).players
     else
-      @players = Player.all.order("CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position")
+      @players = Player.all
     end
   end
 
@@ -73,6 +73,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:first_name, :last_name, :number, :position, :team_id)
+      params.require(:player).permit(:first_name, :last_name, :team_id)
     end
 end

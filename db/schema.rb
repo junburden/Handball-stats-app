@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016231235) do
+ActiveRecord::Schema.define(version: 20161128162557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,15 +26,22 @@ ActiveRecord::Schema.define(version: 20161016231235) do
     t.index ["home_id"], name: "index_games_on_home_id", using: :btree
   end
 
-  create_table "players", force: :cascade do |t|
-    t.integer  "number"
+  create_table "memberships", force: :cascade do |t|
     t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "position"
+    t.index ["player_id"], name: "index_memberships_on_player_id", using: :btree
+    t.index ["team_id"], name: "index_memberships_on_team_id", using: :btree
+  end
+
+  create_table "players", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "position"
-    t.index ["team_id"], name: "index_players_on_team_id", using: :btree
   end
 
   create_table "shots", force: :cascade do |t|
@@ -64,7 +71,8 @@ ActiveRecord::Schema.define(version: 20161016231235) do
 
   add_foreign_key "games", "teams", column: "away_id"
   add_foreign_key "games", "teams", column: "home_id"
-  add_foreign_key "players", "teams"
+  add_foreign_key "memberships", "players"
+  add_foreign_key "memberships", "teams"
   add_foreign_key "shots", "games"
   add_foreign_key "shots", "players", column: "shooter_id"
   add_foreign_key "shots", "teams"

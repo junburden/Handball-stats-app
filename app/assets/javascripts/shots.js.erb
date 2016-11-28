@@ -95,8 +95,8 @@ function gameChangeHandler(el) {
   getTeamsForGame(gameId);
 }
 
-function shooterDiv(value, name, number) {
-  return $("<div class='col-sm-6'><label data-value='" + value + "' for='shot_shooter_id_" + value + "'><input type='radio' value='" + value + "' name='shot[shooter_id]' id='shot_shooter_id_" + value + "'> " + number + " " + name + "</label></div>")
+function shooterDiv(value, name) {
+  return $("<div class='col-sm-6'><label data-value='" + value + "' for='shot_shooter_id_" + value + "'><input type='radio' value='" + value + "' name='shot[shooter_id]' id='shot_shooter_id_" + value + "'> " + name + "</label></div>")
 }
 
 function getPlayersForShooters(team_id) {
@@ -105,7 +105,7 @@ function getPlayersForShooters(team_id) {
     var players = $('[for="shot_shooter_id"]').siblings()
     players.children().not(':first').remove();
     $.each(data, function(i, player) {
-      players.append(shooterDiv(player.id, player.last_name, player.number));
+      players.append(shooterDiv(player.id, player.first_name + ' ' + player.last_name));
     });
   });
 }
@@ -119,7 +119,7 @@ function getPlayersForGoalies(team_id) {
     $.each(data, function(i, player) {
       players.append($("<option>", {
         value: player.id,
-        text: player.last_name
+        text: player.first_name + ' ' + player.last_name
       }));
     });
   });

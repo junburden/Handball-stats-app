@@ -1,0 +1,58 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    
+    <%= form_for(@membership) do |f| %>
+      <% if @membership.errors.any? %>
+        <div class="alert alert-warning" id="error_explanation">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <h4><%= pluralize(@membership.errors.count, "error") %> prohibited this @membership from being saved:</h4>
+
+          <ul>
+          <% @membership.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+
+          <div class="field">
+            <%= f.label :player_id %>
+            <%= f.collection_select :player_id, @players, :id, :name, {prompt: true}, {class: "form-control"} %>
+          </div>
+
+          <div class="field">
+            <%= f.label :team_id %>
+            <%= f.collection_select :team_id, @teams, :id, :name, {prompt: true}, {class: "form-control"} %>
+          </div>
+
+          <div class="field">
+            <%= f.label :number %>
+            <%= f.number_field :number, class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :position %>
+            <%= f.select(:position, options_for_select([
+              ['None', nil],
+              ['Goalie', 'Goalie'],
+              ['Left Wing', 'Left Wing'],
+              ['Left Back', 'Left Back'],
+              ['Centre', 'Centre'],
+              ['Pivot', 'Pivot'],
+              ['Right Back', 'Right Back'],
+              ['Right Wing', 'Right Wing'],
+            ], @membership.position), {}, {class: "form-control"}) %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

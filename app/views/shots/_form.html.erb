@@ -54,7 +54,7 @@
           <div class="field">
             <%= f.label :shooter_id %>
             <div class="row">
-              <%= f.collection_radio_buttons(:shooter_id, shooters, :id, :number_and_name, {prompt: true}) do |b| %>
+              <%= f.collection_radio_buttons(:shooter_id, shooters, :player_id, :number_and_name, {prompt: true}) do |b| %>
                 <div class="col-sm-6"><%= b.label(:"data-value" => b.value) { b.radio_button() + ' ' + b.text } %></div>
               <% end %>
             </div>
@@ -62,7 +62,7 @@
 
           <div class="field">
             <%= f.label :goalie_id %>
-            <%= f.collection_select :goalie_id, goalies, :id, :name, {prompt: true}, {class: "form-control"} %>
+            <%= f.collection_select :goalie_id, goalies, :player_id, :number_and_name, {prompt: true}, {class: "form-control"} %>
           </div>
 
           <div class="field">

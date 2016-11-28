@@ -98,7 +98,7 @@ class ShotsController < ApplicationController
 
     def set_shooters
       if @shot && @shot.team_id
-        @shooters = Player.where(team_id: @shot.team_id)
+        @shooters = Membership.where(team_id: @shot.team_id).order("CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position")
       else
         @shooters = []
       end
@@ -107,7 +107,7 @@ class ShotsController < ApplicationController
     def set_goalies
       if @shot && @shot.team_id
         team_id = @games.first.home.id + @games.first.away.id - @shot.team_id
-        @goalies = Player.where(team_id: team_id)
+        @goalies = Membership.where(team_id: team_id).order("CASE WHEN position='Goalie' THEN 1 ELSE 2 END, position")
       else
         @goalies = []
       end
