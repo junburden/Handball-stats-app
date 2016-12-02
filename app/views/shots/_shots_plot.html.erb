@@ -10,7 +10,7 @@
 <div class="handball-field">
   <% shots.each do |shot| %>
     <%= link_to image_tag(
-      "shooter.png",
+      shot.goal ? "shooter goal.png" : "shooter save.png",
       style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 20 - 5).round.to_s}px;", class: "shooter"),
       edit_shot_path(shot)
     %>
