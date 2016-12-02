@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :set_members, only: [:show]
+  before_action :set_shots, only: [:show]
 
   # GET /teams
   # GET /teams.json
@@ -70,6 +71,10 @@ class TeamsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])
+    end
+
+    def set_shots
+      @shots = Shot.for_team(params[:id])
     end
 
     def set_members

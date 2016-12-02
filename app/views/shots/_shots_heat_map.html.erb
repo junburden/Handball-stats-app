@@ -1,0 +1,16 @@
+<canvas class="handball-goal" id="goal_canvas" width="516px" height="279px"></canvas>
+<script>var shot_data = [
+    <% shots.each do |shot| %>
+      [<%= (shot.x_position + 258).round %>,<%= (259 - shot.y_position).round %>, 1],
+    <% end %>
+  ]
+</script>
+<script>simpleheat('goal_canvas').data(shot_data).max(4).radius(9,9).draw();</script>
+<canvas class="handball-field" id="field_canvas" width="500px" height="420px"></canvas>
+<script>var shooter_data = [
+    <% shots.each do |shot| %>
+      [<%= (shot.shooter_x_pos/5 + 250).round %>,<%= (shot.shooter_z_pos/5 + 20).round %>, 1],
+    <% end %>
+  ]
+</script>
+<script>simpleheat('field_canvas').data(shooter_data).max(4).radius(5,5).draw();</script>

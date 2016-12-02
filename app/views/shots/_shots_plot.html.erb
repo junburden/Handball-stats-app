@@ -1,0 +1,18 @@
+<div class="handball-goal">
+  <% shots.each do |shot| %>
+    <%= link_to image_tag(
+      shot.goal ? "goal.png" : "no goal.png",
+      style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(259 - shot.y_position - 9).round.to_s}px;", class: "handball"),
+      edit_shot_path(shot)
+    %>
+  <% end %>
+</div>
+<div class="handball-field">
+  <% shots.each do |shot| %>
+    <%= link_to image_tag(
+      "shooter.png",
+      style: "left: #{(shot.shooter_x_pos/5 + 250 - 5).round.to_s}px; top: #{(shot.shooter_z_pos/5 + 20 - 5).round.to_s}px;", class: "shooter"),
+      edit_shot_path(shot)
+    %>
+  <% end %>
+</div>
