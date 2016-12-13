@@ -48,6 +48,14 @@
             ], @membership.position), {}, {class: "form-control"}) %>
           </div>
 
+          <div class="field">
+            <%= f.label :active %>
+            <%= f.select(:active, options_for_select([
+              ['Active', true],
+              ['Inactive', false],
+            ], @membership.active), {}, {class: "form-control"}) %>
+          </div>
+
           <div class="actions">
             <%= f.submit class: "btn btn-success" %>
           </div>

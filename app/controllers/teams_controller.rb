@@ -78,7 +78,7 @@ class TeamsController < ApplicationController
     end
 
     def set_members
-      @members = Team.find(params[:id]).memberships.order("CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position")
+      @members = Team.find(params[:id]).memberships.order("active DESC, CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position ASC")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

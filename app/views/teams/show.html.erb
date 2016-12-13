@@ -3,6 +3,9 @@
   <div class="col-md-8">
     <ul class="nav nav-tabs" id="myTabs" role="tablist">
       <li role="presentation" class="active">
+        <a href="#players" id="players-tab" role="tab" data-toggle="tab">Players</a>
+      </li>
+      <li role="presentation">
         <a href="#shots" id="shots-tab" role="tab" data-toggle="tab">Shots</a>
       </li>
       <li role="presentation">
@@ -11,12 +14,14 @@
       <li role="presentation">
         <a href="#heatmap" id="heatmap-tab" role="tab" data-toggle="tab">Heat map</a>
       </li>
-      <li role="presentation">
-        <a href="#players" id="players-tab" role="tab" data-toggle="tab">Players</a>
-      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade active in" role="tab-pane" id="shots">
+      <div class="tab-pane fade active in" role="tab-pane" id="players">
+        <%= render partial: "memberships/members", locals: {members: @members} %>
+        <br>
+        <%= link_to 'New Player', new_player_path, class: "btn btn-success" %>
+      </div>
+      <div class="tab-pane fade" role="tab-pane" id="shots">
         <%= render partial: "shots/shots_plot", locals: {shots: @shots} %>
       </div>
       <div class="tab-pane fade" role="tab-pane" id="shot-details">
@@ -24,11 +29,6 @@
       </div>
       <div class="tab-pane fade" role="tab-pane" id="heatmap">
         <%= render partial: "shots/shots_heat_map", locals: {shots: @shots} %>
-      </div>
-      <div class="tab-pane fade" role="tab-pane" id="players">
-        <%= render partial: "memberships/members", locals: {members: @members} %>
-        <br>
-        <%= link_to 'New Player', new_player_path, class: "btn btn-success" %>
       </div>
     </div>
   </div>
