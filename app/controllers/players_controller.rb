@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     if params.has_key?(:team_id)
-      @players = Team.find(params[:team_id]).players.merge(Membership.active)
+      @players = Team.find(params[:team_id]).players.merge(Membership.active).order("CASE WHEN position='Goalie' THEN 2 ELSE 1 END, position")
     else
       @players = Player.all
     end
