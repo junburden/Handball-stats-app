@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206203924) do
+ActiveRecord::Schema.define(version: 20161215183710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,18 +46,20 @@ ActiveRecord::Schema.define(version: 20161206203924) do
   end
 
   create_table "shots", force: :cascade do |t|
-    t.boolean  "goal",          default: false
-    t.boolean  "seven",         default: false
+    t.boolean  "goal",              default: false
+    t.boolean  "seven",             default: false
     t.float    "x_position"
     t.float    "y_position"
     t.integer  "game_id"
     t.integer  "team_id"
     t.integer  "shooter_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "goalie_id"
     t.integer  "shooter_x_pos"
     t.integer  "shooter_z_pos"
+    t.integer  "defending_team_id"
+    t.index ["defending_team_id"], name: "index_shots_on_defending_team_id", using: :btree
     t.index ["game_id"], name: "index_shots_on_game_id", using: :btree
     t.index ["goalie_id"], name: "index_shots_on_goalie_id", using: :btree
     t.index ["shooter_id"], name: "index_shots_on_shooter_id", using: :btree
@@ -77,4 +79,5 @@ ActiveRecord::Schema.define(version: 20161206203924) do
   add_foreign_key "shots", "games"
   add_foreign_key "shots", "players", column: "shooter_id"
   add_foreign_key "shots", "teams"
+  add_foreign_key "shots", "teams", column: "defending_team_id"
 end

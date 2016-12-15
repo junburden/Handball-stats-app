@@ -125,10 +125,16 @@ function getPlayersForGoalies(team_id) {
   });
 }
 
+function setDefendingTeamId(defending_team_id) {
+  var defending_team = $("#shot_defending_team_id")
+  defending_team.val(defending_team_id);
+}
+
 function teamChangeHandler(el) {
   var teams = $('input[name="' + el.name + '"]')
   var shooterTeamId = parseInt(el.value);
   var goalieTeamId = parseInt(teams[1].value) + parseInt(teams[2].value) - shooterTeamId;
+  setDefendingTeamId(goalieTeamId);
   getPlayersForShooters(shooterTeamId);
   getPlayersForGoalies(goalieTeamId);
 }

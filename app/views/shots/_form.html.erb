@@ -52,6 +52,10 @@
           </div>
 
           <div class="field">
+            <%= f.text_field :defending_team_id, type: "hidden" %>
+          </div>
+
+          <div class="field">
             <%= f.label :shooter_id %>
             <div class="row">
               <%= f.collection_radio_buttons(:shooter_id, shooters, :player_id, :number_and_name, {prompt: true}) do |b| %>
