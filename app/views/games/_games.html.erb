@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row header-row">
+      <div class="col-xs-3">
+        Home
+      </div>
+      <div class="col-xs-3">
+        Away
+      </div>
+      <div class="col-xs-3">
+        Date
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% games.each do |game| %>
+      <%= link_to game do %>
+        <div class="row">
+          <div class="col-xs-3">
+            <%= game.home.name %>  <b><%= game.home_team_score %></b>
+          </div>
+          <div class="col-xs-3">
+            <%= game.away.name %>  <b><%= game.away_team_score %></b>
+          </div>
+          <div class="col-xs-3">
+            <%= game.date %>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to 'Details', game, class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

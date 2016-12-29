@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_tournaments, only: [:edit, :new]
 
   # GET /games
   # GET /games.json
@@ -67,8 +68,16 @@ class GamesController < ApplicationController
       @game = Game.find(params[:id])
     end
 
+    def set_tournaments
+      if params[:tournament_id]
+        @tournaments = Tournament.where(id: params[:tournament_id])
+      else
+        @tournaments = Tournament.all
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:home_id, :away_id, :date)
+      params.require(:game).permit(:tournament_id, :home_id, :away_id, :date)
     end
 end

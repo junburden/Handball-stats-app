@@ -1,0 +1,11 @@
+<h1><%= @tournament.name %></h1>
+
+<%= link_to 'New Game', new_game_path(tournament_id: @tournament.id), class: "btn btn-success" %>
+
+<br><br>
+
+<%= render partial: "games/games", locals: {games: @tournament.games} %>
+
+<%= link_to 'Back', @tournament.league, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_tournament_path(@tournament), class: "btn btn-primary" %>
+<%= link_to 'Delete', @tournament, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= form_for(league) do |f| %>
+      <% if league.errors.any? %>
+        <div class="alert alert-warning" id="error_explanation">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <h4><%= pluralize(league.errors.count, "error") %> prohibited this league from being saved:</h4>
+
+          <ul>
+          <% league.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

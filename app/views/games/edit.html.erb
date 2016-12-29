@@ -1,6 +1,6 @@
 <h1>Editing Game</h1>
 
-<%= render 'form', game: @game %>
+<%= render partial: 'form', locals: {game: @game, tournaments: @tournaments} %>
 
 <%= link_to 'Back', @game, class: "btn btn-default" %>
 <%= link_to 'Destroy', @game, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215183710) do
+ActiveRecord::Schema.define(version: 20161229004107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,18 @@ ActiveRecord::Schema.define(version: 20161215183710) do
     t.integer  "home_id"
     t.integer  "away_id"
     t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "tournament_id"
     t.index ["away_id"], name: "index_games_on_away_id", using: :btree
     t.index ["home_id"], name: "index_games_on_home_id", using: :btree
+    t.index ["tournament_id"], name: "index_games_on_tournament_id", using: :btree
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -72,12 +80,24 @@ ActiveRecord::Schema.define(version: 20161215183710) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tournaments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "league_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_tournaments_on_league_id", using: :btree
+  end
+
   add_foreign_key "games", "teams", column: "away_id"
   add_foreign_key "games", "teams", column: "home_id"
+  add_foreign_key "games", "tournaments"
   add_foreign_key "memberships", "players"
   add_foreign_key "memberships", "teams"
   add_foreign_key "shots", "games"
   add_foreign_key "shots", "players", column: "shooter_id"
   add_foreign_key "shots", "teams"
   add_foreign_key "shots", "teams", column: "defending_team_id"
+  add_foreign_key "tournaments", "leagues"
 end

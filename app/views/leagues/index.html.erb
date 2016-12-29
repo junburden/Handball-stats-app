@@ -1,0 +1,29 @@
+<h1>Leagues</h1>
+
+<%= link_to 'New League', new_league_path, class: "btn btn-success" %>
+
+<br><br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row header-row">
+      <div class="col-xs-3">
+        League
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% @leagues.each do |league| %>
+      <%= link_to league do %>
+        <div class="row">
+          <div class="col-xs-3">
+            <%= league.name %>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to 'Details', league, class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

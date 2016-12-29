@@ -1,0 +1,6 @@
+<h1>Editing League</h1>
+
+<%= render 'form', league: @league %>
+
+<%= link_to 'Back', leagues_path, class: "btn btn-default" %>
+<%= link_to 'Delete', @league, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

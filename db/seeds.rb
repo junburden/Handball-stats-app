@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+### LEAGUES ###
+league = League.create({name: "Ligue Nationale de Handball"})
+
+### TOURNAMENTS ###
+tournament = Tournament.create({name: "LIDL Star League 2015-2016", league_id: league.id, start_date: "09/09/2015", end_date: "02/06/2016"})
+
 ### TEAMS ###
 psg = Team.create({name: "Paris Saint-Germain "})
 puac = Team.create({name: "Pays d'Aix Université Club"})
@@ -73,7 +79,7 @@ Membership.create({player_id: peillet.id,number: 12, position: "Goalie", team_id
 Membership.create({player_id: erevik.id,number: 16, position: "Goalie", team_id: puac.id, defending_team_id: psg.id, active: true})
 
 ### GAMES ###
-game = Game.create({home_id: psg.id, away_id: puac.id, date: "02/06/2016"})
+game = Game.create({home_id: psg.id, away_id: puac.id, date: "02/06/2016", tournament_id: tournament.id})
 
 ### SHOTS ###
 shots = [

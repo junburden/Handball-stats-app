@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row header-row">
+      <div class="col-xs-3">
+        Tournament
+      </div>
+      <div class="col-xs-3">
+        Start date
+      </div>
+      <div class="col-xs-3">
+        End date
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% tournaments.each do |tournament| %>
+      <%= link_to tournament do %>
+        <div class="row">
+          <div class="col-xs-3">
+            <%= tournament.name %>
+          </div>
+          <div class="col-xs-3">
+            <%= tournament.start_date %>
+          </div>
+          <div class="col-xs-3">
+            <%= tournament.end_date %>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to 'Details', tournament, class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

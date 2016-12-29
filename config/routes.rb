@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tournaments
+  resources :leagues
   resources :shots
   resources :games
   resources :players
