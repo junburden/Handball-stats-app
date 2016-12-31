@@ -93,7 +93,7 @@
     </div>
   </div>
   <br>
-  <div class="col-md-8">
+  <div class="col-md-8 col-sm-12">
     <div class="handball-goal canvas" onclick="canvasGoalClickHandler(event)">
       <% if shot.goal %>
         <%= image_tag "handball.png", style: "left: #{(shot.x_position + 258 - 9).round.to_s}px; top: #{(259 - shot.y_position - 9).round.to_s}px;", id: "handball" %>

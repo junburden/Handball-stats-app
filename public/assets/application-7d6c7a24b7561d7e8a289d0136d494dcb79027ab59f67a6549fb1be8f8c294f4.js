@@ -14540,6 +14540,10 @@ return i=null!=n?n:{},a=i.restorationIdentifier,s=i.restorationData,o=i.historyC
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+(function() {
+
+
+}).call(this);
 
 
 
@@ -14830,6 +14834,10 @@ simpleheat.prototype = {
     }
   }
 };
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
