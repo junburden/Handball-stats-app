@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :teams
   resources :memberships, except: [:index, :show]
 
-  root 'games#index'
+  root 'leagues#index'
 end
