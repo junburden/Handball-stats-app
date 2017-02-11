@@ -2,5 +2,5 @@
 
 <%= render 'form', locals: {membership: @membership, players: @players, teams: @teams} %>
 
-<%= link_to 'Back', @membership, class: "btn btn-default" %>
+<%= link_to 'Back', @membership.player, class: "btn btn-default" %>
 <%= link_to 'Delete', @membership, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
